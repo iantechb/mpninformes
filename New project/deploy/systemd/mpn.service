@@ -1,0 +1,23 @@
+[Unit]
+Description=MPN Informes Web App
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/mpn-app
+Environment=APP_BIND=127.0.0.1
+Environment=APP_PORT=4567
+Environment=SESSION_SECRET=REEMPLAZAR_SECRETO_LARGO
+Environment=DEFAULT_ADMIN_USERNAME=admin
+Environment=DEFAULT_ADMIN_PASSWORD=REEMPLAZAR_CLAVE_ADMIN
+Environment=DEFAULT_PASTOR_PASSWORD=REEMPLAZAR_CLAVE_PASTORES
+ExecStart=/usr/bin/ruby /opt/mpn-app/server.rb
+Restart=always
+RestartSec=3
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

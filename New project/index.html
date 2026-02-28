@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Control de Informes - Misión Peruana del Norte</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <h1>Control de Informes Pastorales</h1>
+        <p>Misión Peruana del Norte - Seguimiento por distrito y departamento</p>
+      </div>
+      <button id="exportCsvBtn" class="primary">Exportar consolidado CSV</button>
+    </header>
+
+    <main>
+      <section class="stats" id="stats"></section>
+
+      <section class="controls card">
+        <div class="control-group">
+          <label for="searchInput">Buscar distrito o pastor</label>
+          <input id="searchInput" type="text" placeholder="Ej: Distrito 01 o Pastor Juan" />
+        </div>
+        <div class="control-group">
+          <label for="statusFilter">Filtrar por estado</label>
+          <select id="statusFilter">
+            <option value="all">Todos</option>
+            <option value="completed">Completados</option>
+            <option value="in-progress">En proceso</option>
+            <option value="pending">Pendientes</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="table-wrap card">
+        <table>
+          <thead>
+            <tr>
+              <th>Distrito</th>
+              <th>Pastor</th>
+              <th>Avance</th>
+              <th>Estado</th>
+              <th>Faltantes</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="districtTableBody"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <dialog id="detailsModal">
+      <form method="dialog" class="modal-content">
+        <header class="modal-header">
+          <h2 id="modalTitle">Detalle de Informe</h2>
+          <button class="ghost" value="cancel">Cerrar</button>
+        </header>
+        <section id="modalMeta" class="modal-meta"></section>
+        <div id="departmentChecklist" class="departments"></div>
+        <footer class="modal-footer">
+          <button id="saveChangesBtn" type="button" class="primary">Guardar cambios</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
