@@ -7,17 +7,13 @@ services:
     buildCommand: bundle install
     startCommand: ruby server.rb
     autoDeploy: true
-    disk:
-      name: mpn-data
-      mountPath: /var/data
-      sizeGB: 1
     envVars:
       - key: PORT
         value: 10000
       - key: APP_BIND
         value: 0.0.0.0
       - key: DB_PATH
-        value: /var/data/app.sqlite3
+        value: /tmp/app.sqlite3
       - key: SESSION_SECRET
         generateValue: true
       - key: DEFAULT_ADMIN_USERNAME
