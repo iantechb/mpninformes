@@ -1,7 +1,7 @@
 services:
   - type: web
     name: mpn-informes
-    runtime: ruby
+    env: ruby
     plan: free
     rootDir: .
     buildCommand: bundle install
