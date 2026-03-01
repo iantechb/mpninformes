@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MPN - Control de Informes</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>Control de Informes - Mision Peruana del Norte</h1>
+      <div id="sessionBar" class="session hidden">
+        <span id="welcomeText"></span>
+        <button id="logoutBtn" class="ghost">Cerrar sesion</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section id="loginView" class="card login">
+        <h2>Ingreso</h2>
+        <p>Accede con tu usuario de distrito o con cuenta de administracion.</p>
+        <form id="loginForm" class="grid">
+          <label>
+            Usuario o email
+            <input id="loginInput" type="text" required />
+          </label>
+          <label>
+            Contrasena
+            <input id="passwordInput" type="password" required />
+          </label>
+          <button type="submit" class="primary">Entrar</button>
+        </form>
+        <small class="hint">Admin inicial: <code>admin / AdminMPN2026!</code></small>
+        <div id="loginError" class="error"></div>
+      </section>
+
+      <section id="appView" class="hidden">
+        <section class="stats" id="stats"></section>
+
+        <section id="adminControls" class="card controls hidden">
+          <div>
+            <label>Buscar</label>
+            <input id="searchInput" type="text" placeholder="Distrito, pastor, region, celular o email" />
+          </div>
+          <div>
+            <label>Estado</label>
+            <select id="statusFilter">
+              <option value="all">Todos</option>
+              <option value="completed">Completados</option>
+              <option value="in-progress">En proceso</option>
+              <option value="pending">Pendientes</option>
+            </select>
+          </div>
+          <div>
+            <label>Region</label>
+            <select id="regionFilter">
+              <option value="">Todas</option>
+            </select>
+          </div>
+          <div class="actions">
+            <button id="exportBtn" class="primary">Exportar CSV</button>
+          </div>
+        </section>
+
+        <section class="card table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Region</th>
+                <th>Distrito</th>
+                <th>Pastor</th>
+                <th>Avance</th>
+                <th>Estado</th>
+                <th>Faltantes</th>
+                <th>Accion</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </section>
+
+        <section id="usersPanel" class="card hidden">
+          <h3>Usuarios (admin)</h3>
+          <p>Pastores tienen contrasena inicial: <code>PastorMPN2026!</code></p>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Rol</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Reset</th>
+              </tr>
+            </thead>
+            <tbody id="usersBody"></tbody>
+          </table>
+        </section>
+      </section>
+    </main>
+
+    <dialog id="editModal">
+      <form method="dialog" class="modal-content">
+        <header class="modal-head">
+          <h2 id="modalTitle">Distrito</h2>
+          <button class="ghost" value="cancel">Cerrar</button>
+        </header>
+        <section id="modalMeta" class="meta"></section>
+        <section id="checklist" class="checklist"></section>
+        <footer class="modal-foot">
+          <button type="button" id="saveBtn" class="primary">Guardar</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
